@@ -1,4 +1,7 @@
+#include <sstream>
+
 #include "viewmodel.h"
+#include "utils/utils.h"
 
 namespace vm
 {
@@ -16,9 +19,11 @@ ViewModel* ViewModel::get()
 
 ViewModel::ViewModel()
 {
-    this->listeningSocket = new model::chatserver::connection::ListeningClientSocket("127.0.0.1", 4555);
-    this->listeningSocket->setMessageHandler(ViewModel::updateLog);
-    this->server = new model::chatserver::ChatServer(this->listeningSocket);
+    this->messageListeningSocket = new model::chatserver::connection::ListeningClientSocket("127.0.0.1", 4555);
+    this->messageListeningSocket->setMessageHandler(ViewModel::updateLog);
+    this->stateListeningSocket = new model::chatserver::connection::ListeningClientSocket("127.0.0.1", 4650);
+    this->stateListeningSocket->setMessageHandler(ViewModel::updateUsers);
+    this->server = new model::chatserver::ChatServer(this->messageListeningSocket, this->stateListeningSocket);
 }
 
 void ViewModel::updateLog(const std::string& message)
@@ -30,6 +35,19 @@ void ViewModel::addToLog(const std::string& message)
 {
     this->log << message;
     emit this->logChanged();
+}
+
+void ViewModel::updateUsers(const std::string &message)
+{
+    std::vector<std::string> tokens = utils::split(message, ":");
+    ViewModel::get()->setUsers(tokens);
+}
+
+void ViewModel::setUsers(const std::vector<std::string> users)
+{
+    this->chatroomUsers.clear();
+    this->chatroomUsers.insert(this->chatroomUsers.end(), users.begin(), users.end());
+    emit this->usersChanged();
 }
 
 void ViewModel::join(const std::string& alias)
@@ -44,15 +62,40 @@ bool ViewModel::sendMessage(const std::string& message)
     return this->server->sendMessage(this->alias, message, messageSocket);
 }
 
+void ViewModel::leave()
+{
+    model::chatserver::connection::ClientSocket leaveMessageSocket("127.0.0.1", 4555);
+    model::chatserver::connection::ClientSocket leaveStateSocket("127.0.0.1", 4650);
+
+    std::stringstream message;
+    message << "leave " << this->alias << std::endl;
+    leaveMessageSocket.makeConnection(message.str());
+    leaveStateSocket.makeConnection(message.str());
+
+    leaveMessageSocket.closeConnection();
+    leaveStateSocket.closeConnection();
+}
+
 const std::string ViewModel::getLog() const
 {
     return this->log.str();
 }
 
+const std::vector<std::string>& ViewModel::getUsers() const
+{
+    return this->chatroomUsers;
+}
+
+const std::string& ViewModel::getAlias() const
+{
+    return this->alias;
+}
+
 ViewModel::~ViewModel()
 {
     delete this->server;
-    delete this->listeningSocket;
+    delete this->messageListeningSocket;
+    delete this->stateListeningSocket;
 }
 
 }

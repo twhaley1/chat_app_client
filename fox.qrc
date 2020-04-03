@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/fox.png</file>
+    <file>images/fox_icon.png</file>
+  </qresource>
+</RCC>

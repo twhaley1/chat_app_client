@@ -14,11 +14,17 @@ class ChatWindow : public QMainWindow
 
 public:
     explicit ChatWindow(QWidget *parent = nullptr);
-    ~ChatWindow();
+    ~ChatWindow() override;
+
+protected:
+    void closeEvent(QCloseEvent* event) override;
 
 private slots:
     void handleSendTextButtonClick();
+    void handleLeaveButtonClick();
+
     void showTextLog();
+    void updateUserList();
 
 private:
     Ui::ChatWindow* ui;

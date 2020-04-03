@@ -24,6 +24,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++11
 
+RESOURCES += \
+fox.qrc
+
 SOURCES += \
         main.cpp \
     viewmodel/viewmodel.cpp \
@@ -31,7 +34,8 @@ SOURCES += \
     view/chatwindow.cpp \
     view/startwindow.cpp \
     model/server/connection/clientsocket.cpp \
-    model/server/connection/listeningclientsocket.cpp
+    model/server/connection/listeningclientsocket.cpp \
+    utils/utils.cpp
 
 HEADERS += \
     viewmodel/viewmodel.h \
@@ -39,7 +43,8 @@ HEADERS += \
     view/chatwindow.h \
     view/startwindow.h \
     model/server/connection/clientsocket.h \
-    model/server/connection/listeningclientsocket.h
+    model/server/connection/listeningclientsocket.h \
+    utils/utils.h
 
 FORMS += \
     chatwindow.ui \

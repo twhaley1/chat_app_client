@@ -15,15 +15,18 @@ namespace chatserver
 class ChatServer
 {
 public:
-    ChatServer(connection::ClientSocket* listeningSocket);
+    ChatServer(connection::ClientSocket* messageListeningSocket, connection::ClientSocket* stateListeningSocket);
     ~ChatServer();
 
     bool sendMessage(const std::string& alias, const std::string& message, connection::ClientSocket& socket);
     void startListeningThread(const std::string& alias);
 
 private:
-    connection::ClientSocket* listeningSocket;
-    std::thread* listeningThread;
+    connection::ClientSocket* messageListeningSocket;
+    std::thread* messageListeningThread;
+
+    connection::ClientSocket* stateListeningSocket;
+    std::thread* stateListeningThread;
 };
 
 }

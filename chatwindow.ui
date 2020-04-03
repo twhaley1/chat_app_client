@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1087</width>
     <height>600</height>
    </rect>
   </property>
@@ -24,32 +24,66 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>800</width>
+    <width>1087</width>
     <height>600</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>Chat</string>
+   <string>Foxxy</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="fox.qrc">
+    <normaloff>:/images/images/fox_icon.png</normaloff>:/images/images/fox_icon.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(85, 87, 83);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QListWidget::item {
+	background-color: rgb(154, 221, 208);
+	color: black;
+	border-left: 3px solid rgb(125, 178, 168);
+	border-bottom: 3px solid rgb(125, 178, 168);
+	padding: 10px;
+}</string>
+   </property>
    <widget class="QTextBrowser" name="messageDisplayTextBrowser">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>741</width>
-      <height>461</height>
+      <x>0</x>
+      <y>0</y>
+      <width>881</width>
+      <height>451</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;
+border-radius: 0px;
+border-left: 10px solid rgb(211, 215, 207);
+padding: 20px;</string>
+    </property>
+    <property name="openExternalLinks">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="sendTextPushButton">
     <property name="geometry">
      <rect>
-      <x>670</x>
-      <y>490</y>
-      <width>101</width>
-      <height>26</height>
+      <x>720</x>
+      <y>520</y>
+      <width>141</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(127, 167, 93);
+border-radius: 0px;
+border-left: 3px solid rgb(83, 109, 61);
+border-bottom: 3px solid rgb(83, 109, 61);</string>
     </property>
     <property name="text">
      <string>Send</string>
@@ -58,18 +92,155 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTextEdit" name="sendingTextEdit">
+   <widget class="QListWidget" name="userListView">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>490</y>
-      <width>631</width>
-      <height>91</height>
+      <x>875</x>
+      <y>0</y>
+      <width>211</width>
+      <height>601</height>
      </rect>
     </property>
+    <property name="cursor" stdset="0">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(46, 52, 54);
+border: none;
+border-left: 10px solid rgb(60, 60, 60);
+</string>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="autoScroll">
+     <bool>false</bool>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="showDropIndicator" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::NoSelection</enum>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectItems</enum>
+    </property>
+    <property name="textElideMode">
+     <enum>Qt::ElideRight</enum>
+    </property>
+    <property name="spacing">
+     <number>7</number>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="sortingEnabled">
+     <bool>false</bool>
+    </property>
    </widget>
+   <widget class="QPushButton" name="leaveButton">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>560</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(215, 98, 98);
+border-radius: 0px;
+border-left: 3px solid rgb(131, 59, 59);
+border-bottom: 3px solid rgb(131, 59, 59);</string>
+    </property>
+    <property name="text">
+     <string>Leave</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="sendingTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>450</y>
+      <width>721</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;
+padding-left: 5px;
+padding-right: 10px;
+border-radius: 0px;
+border-bottom: 10px solid rgb(211, 215, 207);</string>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="aliasLabel">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>450</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;
+padding-bottom: 1px;
+border-left: 10px solid rgb(211, 215, 207);
+border-bottom: 10px solid rgb(211, 215, 207);</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>500</y>
+      <width>81</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="fox.qrc">:/images/images/fox.png</pixmap>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>sendingTextEdit</zorder>
+   <zorder>messageDisplayTextBrowser</zorder>
+   <zorder>sendTextPushButton</zorder>
+   <zorder>userListView</zorder>
+   <zorder>leaveButton</zorder>
+   <zorder>aliasLabel</zorder>
+   <zorder>label</zorder>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="fox.qrc"/>
+ </resources>
  <connections/>
 </ui>

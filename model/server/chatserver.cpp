@@ -11,10 +11,12 @@ namespace model
 namespace chatserver
 {
 
-ChatServer::ChatServer(connection::ClientSocket* listeningSocket)
+ChatServer::ChatServer(connection::ClientSocket* messageListeningSocket, connection::ClientSocket* stateListeningSocket)
 {
-    this->listeningSocket = listeningSocket;
-    this->listeningThread = nullptr;
+    this->messageListeningSocket = messageListeningSocket;
+    this->messageListeningThread = nullptr;
+    this->stateListeningSocket = stateListeningSocket;
+    this->stateListeningThread = nullptr;
 }
 
 bool ChatServer::sendMessage(const std::string& alias, const std::string& message, connection::ClientSocket& socket)
@@ -34,14 +36,18 @@ void ChatServer::startListeningThread(const std::string& alias)
 {
     std::stringstream message;
     message << "enter " << alias << std::endl;
-    this->listeningThread = new std::thread(&connection::ClientSocket::makeConnection, this->listeningSocket, message.str());
+    this->messageListeningThread = new std::thread(&connection::ClientSocket::makeConnection, this->messageListeningSocket, message.str());
+    this->stateListeningThread = new std::thread(&connection::ClientSocket::makeConnection, this->stateListeningSocket, message.str());
 }
 
 ChatServer::~ChatServer()
 {
-    this->listeningSocket->closeConnection();
-    this->listeningThread->join();
-    delete this->listeningThread;
+    this->messageListeningSocket->closeConnection();
+    this->messageListeningThread->join();
+    this->stateListeningSocket->closeConnection();
+    this->stateListeningThread->join();
+    delete this->messageListeningThread;
+    delete this->stateListeningThread;
 }
 
 }

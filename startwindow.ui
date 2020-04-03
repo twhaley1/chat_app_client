@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>411</width>
+    <height>102</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,69 +18,74 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>800</width>
-    <height>600</height>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>800</width>
-    <height>600</height>
+    <width>100000</width>
+    <height>11000000</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Chat</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(85, 87, 83)</string>
+  </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>240</y>
-      <width>65</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="text">
-     <string>Alias: </string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="aliasLineEdit">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>240</y>
-      <width>301</width>
+      <x>90</x>
+      <y>20</y>
+      <width>311</width>
       <height>26</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;
+border-radius: 5px;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="joinChatPushButton">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>290</y>
-      <width>351</width>
+      <x>10</x>
+      <y>60</y>
+      <width>391</width>
       <height>26</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 5px;
+background-color: rgb(186, 189, 182)</string>
+    </property>
     <property name="text">
      <string>Join</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>65</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
+    <property name="text">
+     <string>Alias:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
     </property>
    </widget>
   </widget>
